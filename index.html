@@ -33,6 +33,54 @@ body {
   max-width: 860px;
   margin: 0 auto;
   padding: 96px 40px 56px;
+  position: relative;
+}
+
+/* ── STICKERS ──────────────────────────────────── */
+.sticker-cluster {
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  width: 180px;
+  height: 220px;
+  pointer-events: none;
+}
+
+.sticker {
+  position: absolute;
+  pointer-events: auto;
+  cursor: default;
+  user-select: none;
+  line-height: 1;
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1);
+}
+.sticker:hover { transform: scale(1.25) rotate(var(--sr)) !important; }
+
+.sticker-emoji {
+  font-size: 44px;
+  filter: drop-shadow(2px 3px 10px rgba(0,0,0,0.13));
+}
+
+.sticker-text {
+  background: white;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 13px;
+  color: var(--text);
+  box-shadow: 2px 3px 10px rgba(0,0,0,0.12), 0 0 0 1.5px rgba(0,0,0,0.04);
+  white-space: nowrap;
+}
+
+/* sticker pop-in */
+@keyframes pop-in {
+  0%   { opacity: 0; transform: scale(0.5) rotate(var(--sr)); }
+  70%  { transform: scale(1.1) rotate(var(--sr)); }
+  100% { opacity: 1; transform: scale(1) rotate(var(--sr)); }
+}
+
+@media (max-width: 700px) {
+  .sticker-cluster { display: none; }
 }
 
 .hero-name {
@@ -253,28 +301,28 @@ body {
 
 .social-row {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .social-link {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  gap: 7px;
+  padding: 8px 14px;
   background: var(--accent-s);
   color: var(--accent);
-  border-radius: 12px;
+  border-radius: 100px;
   text-decoration: none;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 11.5px;
   transition: background 0.15s, color 0.15s, transform 0.15s;
-  width: fit-content;
 }
 .social-link:hover {
   background: var(--accent);
   color: white;
-  transform: translateX(4px);
+  transform: translateY(-2px);
 }
 .social-link svg { flex-shrink: 0; }
 
@@ -473,6 +521,14 @@ footer a:hover { color: var(--accent); }
   </div>
   <p class="hero-tagline">I provide the vibes.<br>Claude writes the code.</p>
   <div class="toto-pill">🎱 <span id="draws">0</span> lottery draws simulated</div>
+
+  <!-- Stickers -->
+  <div class="sticker-cluster">
+    <div class="sticker sticker-emoji" style="--sr:-14deg; top:0;   right:30px; transform:rotate(-14deg); animation: pop-in .4s .5s cubic-bezier(.34,1.56,.64,1) both;">🐋</div>
+    <div class="sticker sticker-emoji" style="--sr:10deg;  top:60px; right:5px;  transform:rotate(10deg);  animation: pop-in .4s .6s cubic-bezier(.34,1.56,.64,1) both;">📼</div>
+    <div class="sticker sticker-emoji" style="--sr:-6deg;  top:90px; right:90px; transform:rotate(-6deg);  animation: pop-in .4s .65s cubic-bezier(.34,1.56,.64,1) both;">✨</div>
+    <div class="sticker sticker-text"  style="--sr:8deg;   top:150px;right:20px; transform:rotate(8deg);   animation: pop-in .4s .72s cubic-bezier(.34,1.56,.64,1) both;">vibe coded 🤍</div>
+  </div>
 </header>
 
 <!-- ── PROJECTS ── -->
